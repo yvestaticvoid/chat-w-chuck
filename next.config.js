@@ -5,6 +5,6 @@ const nextConfig = {
 
 module.exports = nextConfig, module.exports = {
   images: {
-    domains: ['wl-genial.cf.tsp.li'],
+    domains: ['wl-genial.cf.tsp.li', 'cdn.pixabay.com'],
   },
 };

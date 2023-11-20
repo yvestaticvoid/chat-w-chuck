@@ -1,15 +1,24 @@
 .container{
+    width: 35rem;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
 }
+
+.chat_container{
+    width: inherit;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin: 0 0 1rem 0;
+}
+
 .frase{
-    width: rem;
     height: auto;
-    padding: 1rem 2rem 1rem 1rem;
-    border-radius: 0 20px 20px 20px;
-    background-color:rgb(243, 243, 243);
+    padding: .5rem 1rem ;
+    border-radius: 5px 5px 0 5px;
 }
 
 .welcome_frase{
@@ -21,24 +30,19 @@
 }
 .inner_container{
     display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    width: 20rem;
-    height: fit-content;
-    margin: 0 0 1rem 0;
-
+    flex-direction: row-reverse;
+    align-items: center;
+    margin: 1rem 0;
 }
 
 .message{
     display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: flex-end;
+    flex-direction: row-reverse;
 }
 
 .chuck_pp_image{
     border-radius: 50%;
-    margin: 0 .5rem 0 0;
+    margin: 0 .5rem;
 }
 
 .share_button {
@@ -50,8 +54,68 @@
     border-radius: 10px;
     margin: 1rem 0 0 0;
     transition: .4s;
+    cursor: pointer;
 }
 
 .share_button:hover {
     background-color: rgb(197, 19, 72);
+}
+
+.input_message{
+
+    width: 30rem;
+    min-height: 2.3rem;
+    overflow: hidden;
+    padding: 0 .6rem;
+    border: 0;
+    background-color: rgb(180, 173, 173);
+    border-radius: 10px 0 0 10px;
+
+}
+.submit_button {
+    width: 5rem;
+    height: 2.3rem;
+    background-color: rgb(0, 0, 0);
+    border: 0;
+    color: white;
+    border-radius: 0 10px 10px 0;
+    transition: .4s;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.submit_button:hover {
+    background-color: rgb(224, 135, 0);
+}
+
+.button_container{
+    width: inherit;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 1rem 0;
+
+}
+
+.joke_button {
+    width: auto;
+    height: 2rem;
+    background-color: rgb(0, 0, 0);
+    border: 0;
+    color: white;
+    border-radius: 10px;
+    padding: .4rem .6rem;
+    transition: .4s;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.joke_button:first-of-type{
+    background-color: rgb(224, 135, 0);
+}
+
+.joke_button:hover{
+    transform: translateY(-5px);
+    background-color: crimson;
 }
