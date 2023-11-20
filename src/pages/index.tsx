@@ -8,12 +8,20 @@ const inter = Inter({ subsets: ['latin'] })
 let pp_Norris = "https://wl-genial.cf.tsp.li/resize/728x/jpg/225/701/6612535fd88221c934e7819be8.jpg"
 let no_pp = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
 
+type Message = {
+	text: string,
+	sender: string,
+	type: string,
+	name: string,
+}
 // TO-DO
 // Generate Chuck Joke -> Create array with jokes from object :)
-// Generate pred_answer when joke button not clicked
 // Null, and empty handling (form gen. error handling)
 // Adapt to small window (Customer Support like Chat)
+// Scrollable chat like ChatGPT
 
+// DONE
+// Generate pred_answer when joke button not clicked 
 const data = 
 {
 	"frases": [
@@ -96,7 +104,6 @@ const data =
 		}
 	]
 }
-
 const pred_answers = [
 	'When Chuck Norris doesnt understand, he simply roundhouse kicks confusion out of existence. But your message... well, lets just say it left confusion scratching its head.',"I once asked Chuck Norris to understand your message. He replied, 'Some mysteries are better left unsolved.","Chuck Norris decoded ancient languages before breakfast, but your message might need a Rosetta Stone or two.","Even Chuck Norris takes a moment to ponder the enigmatic brilliance of your message. Or, you know, just stares at it blankly.","Your message has stumped lesser beings. Chuck Norris is considering translating it into Klingon for easier understanding.","Chuck Norris once deciphered hieroglyphics blindfolded. Your message? Well, it's a bit like ancient scribbles on a cave wall.","When Chuck Norris encounters the unknown, he usually stares it down till it confesses. Your message seems to enjoy its mystery.","Even Chuck Norris' beard can't fathom the depths of your message's complexity. Impressive.","Chuck Norris understands the universe's secrets, but your message seems to have taken a detour through the Bermuda Triangle.","Your message is like a riddle wrapped in a mystery inside an enigma... Chuck Norris usually just roundhouse kicks through such puzzles."
 ]
@@ -104,8 +111,9 @@ const pred_answers = [
 export default function Home() {
 
 	const [share, setShare] = useState('');
-	const [messages, setMessages]: any = useState([]);
+	const [messages, setMessages] = useState<Message[]>([]);
 	const [text, setText]: any = useState('');
+	const [isWriting, setIsWriting] = useState(false);
 	
 	const handleClick = (e: any) => {
 		let frase = e.target.value;
@@ -130,6 +138,10 @@ export default function Home() {
 	const handleSubmit = (e:any) => {
 		e.preventDefault();
 
+		if(text === '' || text === undefined || text === null) {
+			return 0
+		}
+
 		handleUserSubmit(text);
 		handleChuckAnswer();
 
@@ -138,27 +150,38 @@ export default function Home() {
 
 	const handleUserSubmit = (text:any) => {
 		setTimeout(() => {
-			setMessages([...messages,{text: text, sender: 'user'}]);
-		}, 500)
+			setMessages(prevMessages => [...prevMessages, {text: text, sender: 'user', type: 'user ask', name: 'You'}]);
+		}, 150)
 	}
 
 	const handleChuckAnswer = () => {
 
 		const randomIndex = Math.floor(Math.random() * pred_answers.length);
-		
+		setIsWriting(true);
+
 		setTimeout(() => {
-			setMessages([...messages, { text: pred_answers[randomIndex], sender: 'Chuck'}])
-		}, 2000)
+			setIsWriting(false);
+			setMessages(prevMessages => [...prevMessages, { text: pred_answers[randomIndex], sender: 'Chuck', type: 'ran_ans', name: 'Chuck Norris'}])
+		}, 3000)
 
 	}
 
 	const handleButton = () => {
+		
+		const answers: any[] = [];
+		answers.push(data.frases);
 
-		//
+		const randomIndex = Math.floor(Math.random() * answers.length);
+		const answer = answers[0][randomIndex].frase;
+	
+		setIsWriting(true);
+
+		setTimeout(() => {
+			setIsWriting(false);
+			setMessages(prevMessages => [...prevMessages, { text: answer, sender: 'Chuck', type: 'joke', name: 'Chuck Norris'}])
+		}, 1000)
 
 	}
-
-	console.log(messages)
 
 	return (
 		<>
@@ -174,20 +197,22 @@ export default function Home() {
 					<div className={`${s_frases.chat_container}`}>
 						<div className={`${s_frases.chat}`}>
 							{messages.map((message: any, i:any) => (
-								// <div key={i} className={`${s_frases.message}`}>
 								<div key={i} className={`${s_frases.inner_container}`}>
-									<div className={`${s_frases.message}`}>
+									<div className={`${message.sender === "user" ? s_frases.message : s_frases.inner_container_answer}`}>
 										{
 											message.sender == 'user' ? (
-												<Image src={no_pp} width={40} height={40} alt="User profile picture" className={`${s_frases.chuck_pp_image}`}/>
+												<Image src={no_pp} width={40} height={40} alt="User profile picture" className={`${s_frases.user_pp_image}`}/>
 											) : (
 												<Image src={pp_Norris} width={40} height={40} alt="Chuck Norris" className={`${s_frases.chuck_pp_image}`}/>
 											)
 										}
-										<p className={`${s_frases.frase}`}>{message.text}</p>
+										<div className={`${s_frases.message_text_container}`}>
+											<p className={`${s_frases.name}`}>{message.name}</p>
+											<p className={`${s_frases.frase}`}>{message.text}</p>
+										</div>
 									</div>
 									{
-										message.sender === "Chuck" && (
+										message.type === "joke" && (
 											<button className={`${s_frases.share_button}`} onClick={handleClick} value={message.text}>Share</button>
 										)
 									}
