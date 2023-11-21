@@ -1,25 +1,147 @@
-.container{
-    width: 35rem;
+.main{
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 100vh;
 }
+
+.utils_hidden{
+    display: flex;
+    flex-direction: row;
+}
+
+.utils_container_hidden{
+    width: 19rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+
+.utils{
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    top: 2%;
+    left: 5%;
+}
+
+.utils_container{
+    width: 19rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.title{
+    font-size: .8rem;
+    font-weight: 500;
+    color: rgb(56, 55, 55);
+}
+
+.close_btn{
+    width: 1.2rem;
+    height: 1.2rem;
+    border: none;
+    background-color:  rgb(255, 168, 80);
+    border-radius: 5px;
+    font-size: .6rem;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transform: rotate(180deg);
+    transition: .3s;
+}
+
+.open_btn{
+    width: 1.2rem;
+    height: 1.2rem;
+    border: none;
+    background-color:  rgb(255, 168, 80);
+    border-radius: 5px;
+    font-size: .6rem;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.close_btn:hover, .open_btn:hover{
+    background-color: crimson;
+}
+
+.container{
+    width: auto;
+    height: 36rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    padding: 2.2rem 1rem 1rem 1rem;
+    border-right: 1px solid rgba(255, 106, 0, 0.42);
+    border-left: 1px solid rgba(255, 106, 0, 0.42);
+    border-top: 1px solid rgba(255, 106, 0, 0.42);
+    margin: 0 .3rem 0 0;
+    background-color: rgb(236, 234, 234);
+    cursor: default;
+}
+
+.container_hidden{
+    width: 21.15rem;
+    height: 3rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    margin: 0 .3rem 0 0;
+    border-right: 1px solid rgba(255, 106, 0, 0.42);
+    border-left: 1px solid rgba(255, 106, 0, 0.42);
+    border-top: 1px solid rgba(255, 106, 0, 0.42);
+    background-color: rgb(236, 234, 234);
+}
+
+.hide{
+    display: none;
+}
+
+.chat_container::-webkit-scrollbar {
+    width: .6rem;
+    background-color: rgb(236, 234, 234);
+}
+
+
 
 .chat_container{
     width: inherit;
+    height: 40rem;
     display: flex;
     flex-direction: row-reverse;
     align-items: flex-start;
     justify-content: flex-start;
-    margin: 0 0 1rem 0;
+    margin: .5rem 0 0 0;
+    overflow-y: auto;
 }
+
 
 .frase{
     height: auto;
 }
 
 .message_text_container{
+    width:18rem;
     display: flex;
     flex-direction: column;
     padding: .5rem;
@@ -37,33 +159,29 @@
     font-size: .8rem;
 }
 
-.welcome_frase{
-    background-color:rgb(254, 232, 184);
-}
-
-.welcome_frase span {
-    font-weight: bold;
-}
-
 .inner_container_answer{
 
-    width: inherit;
+    width:18rem;
+    max-width: 18rem;
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin: 1rem 0;
+    margin: .4rem 0;
     font-weight: 500;
-    background-color: rgb(236, 221, 175);
+    background-color: rgba(236, 221, 175, 0.186);
     border-radius: 10px;
     padding: .3rem 0;
 }
 
 .message{
-    width: inherit;
+    width:18rem;
     display: flex;
     flex-direction: row-reverse;
-    margin: 1rem 0;
+    align-items: center;
     font-weight: 500;
+    border-radius: 10px;
+    padding: .3rem 0;
+    margin: .4rem 0;
 }
 
 .chuck_pp_image{
@@ -73,7 +191,31 @@
 
 .user_pp_image{
     border-radius: 50%;
-    margin: 0;
+    margin: 0 0.5rem 0 0;
+}
+
+.button_inner_container{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.generated_inner_container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(113, 113, 113, 0.085);
+    border-radius: 6px;
+    padding: .2rem 0;
+    margin: .6rem 0;
+}
+
+.gen_text_inner_container{
+    font-size: .7rem;
+    font-weight: 500;
+    color: rgb(97, 97, 97);
 }
 
 .share_button {
@@ -81,9 +223,9 @@
     height: 2rem;
     background-color: rgb(238, 132, 46);
     border: 0;
-    color: aliceblue;
+    color: rgb(255, 255, 255);
     border-radius: 10px;
-    margin: 1rem 0 0 0;
+    margin: .1rem 0 0 0;
     transition: .4s;
     cursor: pointer;
 }
@@ -94,12 +236,13 @@
 
 .input_message{
 
-    width: 30rem;
+    width: 14rem;
     min-height: 2.3rem;
     overflow: hidden;
     padding: 0 .6rem;
     border: 0;
-    background-color: rgb(228, 228, 228);
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(202, 202, 202);
     border-radius: 10px 0 0 10px;
     transition: .3s;
 
@@ -107,13 +250,13 @@
 
 .input_message:hover, .input_message:active {
 
-    background-color: rgb(206, 206, 206);
+    background-color: rgb(231, 231, 231);
 }
 
 .submit_button {
     width: 5rem;
     height: 2.3rem;
-    background-color: rgb(40, 37, 37);
+    background-color: rgb(204, 203, 203);
     border: 0;
     color: white;
     border-radius: 0 10px 10px 0;
@@ -137,9 +280,9 @@
 }
 
 .joke_button {
-    width: auto;
+    width: 19rem;
     height: 2rem;
-    background-color: rgb(40, 37, 37);
+    background-color: rgb(224, 135, 0);
     border: 0;
     color: white;
     border-radius: 10px;
@@ -149,11 +292,26 @@
     font-weight: 600;
 }
 
-.joke_button:first-of-type{
-    background-color: rgb(224, 135, 0);
-}
-
 .joke_button:hover{
     transform: translateY(-5px);
     background-color: crimson;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.powered{
+    padding: .3rem 0;
+    font-size: .55rem;
+    color: rgb(156, 156, 156);
+    font-weight: 400;
+    cursor: default;
+}
+
+.powered span {
+    font-weight: 600;
 }
