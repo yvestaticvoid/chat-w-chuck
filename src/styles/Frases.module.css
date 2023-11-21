@@ -111,6 +111,7 @@
     border-left: 1px solid rgba(255, 106, 0, 0.42);
     border-top: 1px solid rgba(255, 106, 0, 0.42);
     background-color: rgb(236, 234, 234);
+    cursor: pointer;
 }
 
 .hide{
@@ -265,8 +266,16 @@
     font-weight: 600;
 }
 
-.submit_button:hover {
+.submit_button_active{
+    width: 5rem;
+    height: 2.3rem;
     background-color: crimson;
+    border: 0;
+    color: white;
+    border-radius: 0 10px 10px 0;
+    transition: .4s;
+    cursor: pointer;
+    font-weight: 600;
 }
 
 .button_container{

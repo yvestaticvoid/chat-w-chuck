@@ -261,7 +261,7 @@ export default function Home() {
 			</Head>
 			<main className={`${s_frases.main} ${inter.className}`}>
 				<>
-					<div className={`${isHidden ? s_frases.container_hidden : s_frases.hide}`}>
+					<div onClick={hanldeChatOpen} className={`${isHidden ? s_frases.container_hidden : s_frases.hide}`}>
 						<div className={`${s_frases.utils_hidden}`}>
 							<div className={`${s_frases.utils_container_hidden}`}>
 								<p className={`${s_frases.title}`}>Chuck Norris</p>
@@ -336,7 +336,7 @@ export default function Home() {
 								<button type='button' className={`${s_frases.joke_button}`} onClick={handleButton}>Ask a Joke!</button>
 							</div>
 							<input className={`${s_frases.input_message}`} type="text" value={text} onChange={(e => setText(e.target.value))} placeholder='Chuck, I need help with a T-shirt purchase...' />
-							<button type='submit' className={`${s_frases.submit_button}`}>Ask</button>
+							<button type='submit' className={`${text != '' ? s_frases.submit_button_active : s_frases.submit_button}`}>Ask</button>
 						</div>
 						<p className={`${s_frases.powered}`}>Powered by <span>ChuckfAI</span></p>
 					</form>
