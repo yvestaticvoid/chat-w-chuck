@@ -7,12 +7,12 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.utils_hidden{
+.upper_hidden{
     display: flex;
     flex-direction: row;
 }
 
-.utils_container_hidden{
+.upper_container_hidden{
     width: 19rem;
     display: flex;
     flex-direction: row;
@@ -20,17 +20,24 @@
 }
 
 
-.utils{
+.upper{
     display: flex;
     flex-direction: row;
     position: absolute;
+
     top: 0%;
     left: 0%;
+
     padding: .6em 1em;
+    border-radius: 5px 5px 0 0;
+
+    background: rgb(79,129,193);
+    background: linear-gradient(180deg, rgba(79,129,193,1) 2%, rgba(147,187,215,1) 4%, rgba(147,187,215,1) 7%, rgba(105,151,201,1) 11%, rgba(79,129,193,1) 20%, rgba(79,129,193,1) 36%, rgba(142,200,224,1) 90%, rgba(79,129,193,1) 100%);
+    
     cursor: pointer;
 }
 
-.utils_container{
+.upper_container{
     width: 19rem;
     display: flex;
     flex-direction: row;
@@ -38,41 +45,66 @@
 }
 
 .title{
-    font-size: .8rem;
-    font-weight: 500;
-    color: rgb(56, 55, 55);
+    font-size: .9rem;
+    font-weight: 600;
+    color: rgb(255, 255, 255);
+    filter:drop-shadow(0 3px 1px #446e8c);
 }
 
 .close_btn{
+
     width: 1.2rem;
     height: 1.2rem;
-    border: none;
-    background-color:  rgb(255, 168, 80);
-    border-radius: 5px;
-    font-size: .6rem;
-    text-align: center;
+    
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
+
+    background: rgb(232,246,255);
+    background: linear-gradient(180deg, rgba(232,246,255,1) 0%, rgba(184,215,237,1) 67%);
+
+    border: none;
+    border-radius: 5px;
+    
+    filter: drop-shadow(0 0 2px #355b75);
+    
+    color: #446e8c;
+    font-size: .8rem;
+    text-align: center;
+
     cursor: pointer;
+
     transform: rotate(180deg);
     transition: .3s;
+
+
 }
 
 .open_btn{
     width: 1.2rem;
     height: 1.2rem;
-    border: none;
-    background-color:  rgb(255, 168, 80);
-    border-radius: 5px;
-    font-size: .6rem;
-    text-align: center;
+    
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
+
+    background: rgb(232,246,255);
+    background: linear-gradient(180deg, rgba(232,246,255,1) 0%, rgba(184,215,237,1) 67%);
+
+    filter: drop-shadow(0 0 2px #355b75);
+
+    border: none;
+    border-radius: 5px;
+    
+    color: #446e8c;
+    font-size: .8rem;
+    text-align: center;
+
     cursor: pointer;
+
+
     transition: .3s;
 }
 
@@ -90,34 +122,39 @@
     position: absolute;
     right: 0;
     bottom: 0;
+    border-radius: 5px 5px 0 0;
     padding: 2.2rem 1rem 1rem 1rem;
-    border-right: 1px solid rgba(255, 106, 0, 0.42);
-    border-left: 1px solid rgba(255, 106, 0, 0.42);
-    border-top: 1px solid rgba(255, 106, 0, 0.42);
     margin: 0 .3rem 0 0;
     background-color: rgb(236, 234, 234);
     cursor: default;
 }
 
 .container_hidden{
+
     width: 21.15rem;
     height: 3rem;
+    
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
+
     position: absolute;
     right: 0;
     bottom: 0;
+
     margin: 0 .3rem 0 0;
-    border-right: 1px solid rgba(255, 106, 0, 0.42);
-    border-left: 1px solid rgba(255, 106, 0, 0.42);
-    border-top: 1px solid rgba(255, 106, 0, 0.42);
-    background-color: rgb(236, 234, 234);
+    padding: .6em 1em;
+
+    border-radius: 5px 5px 0 0;
+
+    background: rgb(79,129,193);
+    background: linear-gradient(180deg, rgba(79,129,193,1) 2%, rgba(147,187,215,1) 4%, rgba(147,187,215,1) 7%, rgba(105,151,201,1) 11%, rgba(79,129,193,1) 20%, rgba(79,129,193,1) 36%, rgba(142,200,224,1) 90%, rgba(79,129,193,1) 100%);
+    
     cursor: pointer;
 }
 
-.hide{
+.container_show{
     display: none;
 }
 
@@ -125,8 +162,6 @@
     width: .6rem;
     background-color: rgb(236, 234, 234);
 }
-
-
 
 .chat_container{
     width: inherit;
@@ -156,9 +191,8 @@
 .name{
     height: auto;
     font-size: .7rem;
-    font-weight: 500;
+    font-weight: 600;
     padding: .2rem 0;
-    color: rgb(93, 93, 93);
 }
 .frase{
     font-size: .8rem;
@@ -170,12 +204,14 @@
     max-width: 18rem;
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: flex-start;
+    justify-content: flex-start;
     margin: .4rem 0;
     font-weight: 500;
-    background-color: rgba(236, 221, 175, 0.186);
-    border-radius: 10px;
+    background-color: #0c60c617;
+    border-radius: 5px;
     padding: .3rem 0;
+    color: #c6600c;
 }
 
 .message{
@@ -187,11 +223,12 @@
     border-radius: 10px;
     padding: .3rem 0;
     margin: .4rem 0;
+    color: #0c60c6;
 }
 
 .chuck_pp_image{
     border-radius: 50%;
-    margin: 0 0 0 1rem;
+    margin: .5rem 0 .5rem 1rem;
 }
 
 .user_pp_image{
@@ -211,8 +248,8 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    background-color: rgba(113, 113, 113, 0.085);
-    border-radius: 6px;
+    background-color: #b5b5b426;
+    border: 1px solid rgb(199, 199, 199);
     padding: .2rem 0;
     margin: .6rem 0;
 }
@@ -224,9 +261,10 @@
 }
 
 .share_button {
-    width: 5rem;
+    width: 7.6rem;
     height: 2rem;
-    background-color: rgb(238, 132, 46);
+    background: rgb(79,129,193);
+    background: linear-gradient(180deg, rgba(79,129,193,1) 2%, rgba(147,187,215,1) 4%, rgba(147,187,215,1) 7%, rgba(105,151,201,1) 11%, rgba(79,129,193,1) 20%, rgba(79,129,193,1) 36%, rgba(142,200,224,1) 90%, rgba(79,129,193,1) 100%);
     border: 0;
     color: rgb(255, 255, 255);
     border-radius: 10px;
@@ -235,8 +273,8 @@
     cursor: pointer;
 }
 
-.share_button:hover {
-    background-color: rgb(197, 19, 72);
+.share_button:hover{
+    transform: scale(.97);
 }
 
 .input_message{
@@ -274,7 +312,8 @@
 .submit_button_active{
     width: 5rem;
     height: 2.3rem;
-    background-color: crimson;
+    background: rgb(79,129,193);
+    background: linear-gradient(180deg, rgba(79,129,193,1) 2%, rgba(147,187,215,1) 4%, rgba(147,187,215,1) 7%, rgba(105,151,201,1) 11%, rgba(79,129,193,1) 20%, rgba(79,129,193,1) 36%, rgba(142,200,224,1) 90%, rgba(79,129,193,1) 100%);
     border: 0;
     color: white;
     border-radius: 0 10px 10px 0;
@@ -296,7 +335,8 @@
 .joke_button {
     width: 19rem;
     height: 2rem;
-    background-color: rgb(224, 135, 0);
+    background: rgb(79,129,193);
+    background: linear-gradient(180deg, rgba(79,129,193,1) 2%, rgba(147,187,215,1) 4%, rgba(147,187,215,1) 7%, rgba(105,151,201,1) 11%, rgba(79,129,193,1) 20%, rgba(79,129,193,1) 36%, rgba(142,200,224,1) 90%, rgba(79,129,193,1) 100%);
     border: 0;
     color: white;
     border-radius: 10px;

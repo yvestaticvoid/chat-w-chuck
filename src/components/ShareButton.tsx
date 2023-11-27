@@ -1,7 +1,7 @@
-import s_chat from '@/styles/Chat.module.css'
+import s_chat from '@/styles/Chat.module.scss'
 import { useEffect, useState } from 'react'
 
-export default function Chat({text}: {text: string}) {
+export default function ShareButton({text}: {text: string}) {
 	const [share, setShare] = useState('');
     const joke = text;
 
@@ -28,7 +28,9 @@ export default function Chat({text}: {text: string}) {
 	return (
         <>
             <div className={`${s_chat.button_inner_container}`}>
-                <button className={`${s_chat.share_button}`} onClick={handleClick}>Share</button>
+                <button className={`${s_chat.share_button}`} onClick={handleClick}>
+					Share on Twitter
+				</button>
             </div>
         </>
     )

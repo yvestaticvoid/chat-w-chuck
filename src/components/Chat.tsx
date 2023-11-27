@@ -1,11 +1,13 @@
-import Image from 'next/image'
-import s_chat from '@/styles/Chat.module.css'
+import styles_chat from '@/styles/Chat.module.scss'
 import { useEffect, useState, useRef } from 'react'
-import ShareButton from '@/components/ShareButton'
+import Message from '@/components/Message'
+import WelcomeMessage from '@/components/WelcomeMessage'
+import UpperBarActive from '@/components/UpperBarActive'
+import UpperBarInactive from '@/components/UpperBarInactive'
+
 
 // URL for Chuck Norris and user profile pictures
 let pfpic_chuck = "https://wl-genial.cf.tsp.li/resize/728x/jpg/225/701/6612535fd88221c934e7819be8.jpg"
-let pfpic_user = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
 
 // Defines the structure of a message object
 type Message = {
@@ -147,7 +149,6 @@ const pred_answers = [
     "¡Una pregunta que cambia el mundo! ¡Otra más!"
 ];
 
-
 export default function Chat() {
 	const [messages, setMessages] = useState<Message[]>([]);
 	const [text, setText]: any = useState('');
@@ -259,88 +260,44 @@ export default function Chat() {
 
 	return (
 		<>
-			<main className={`${s_chat.main}`}>
-				<>
-					<div onClick={hanldeChatOpen} className={`${isHidden ? s_chat.container_hidden : s_chat.hide}`}>
-						<div className={`${s_chat.utils_hidden}`}>
-							<div className={`${s_chat.utils_container_hidden}`}>
-								<p className={`${s_chat.title}`}>Chuck Norris</p>
-								<button onClick={hanldeChatOpen} className={`${s_chat.open_btn}`}><span className={`${s_chat.close_arrow}`}>&#11165;</span></button>
-							</div>
-						</div>
+			<div className={`${styles_chat.main}`}>
+				
+				<div onClick={hanldeChatOpen} className={`${isHidden ? styles_chat.container_hidden : styles_chat.display_none}`}>
+					<UpperBarInactive />
+				</div>
+				<div className={`${isHidden ? styles_chat.display_none : styles_chat.container_active}`}>
+					<div className={`${styles_chat.upper}`} onClick={hanldeChatOpen}>
+						<UpperBarActive write={isWriting} />
 					</div>
-				</>
-				<div className={`${isHidden ? s_chat.hide : s_chat.container}`}>
-					<div className={`${s_chat.utils}`} onClick={hanldeChatOpen}>
-						<div className={`${s_chat.utils_container}`}>
-							<p className={`${s_chat.title}`}>Chuck Norris{ isWriting && ' is writing...'}</p>
-
-							<button onClick={hanldeChatOpen} className={`${s_chat.close_btn} ${s_chat.open} `}><span className={`${s_chat.close_arrow}`}>&#11165;</span></button>
-						</div>
-					</div>
-					<div className={`${s_chat.chat_container}`} ref={scrollRef}>
-						<div className={`${s_chat.chat}`}>
-							<div className={`${s_chat.inner_container}`}>
-
-								<div className={`${s_chat.generated_inner_container}`}>
-									<p className={`${s_chat.gen_text_inner_container}`}>
-										Start a conversation
-									</p>
-								</div>
-								<div className={`${s_chat.inner_container_answer}`}>
-									<Image src={pfpic_chuck} width={40} height={40} alt="Chuck Norris" className={`${s_chat.chuck_pp_image}`} />
-									<div className={`${s_chat.message_text_container}`}>
-										<p className={`${s_chat.name}`}>Chuck Norris now</p>
-										<p className={`${s_chat.frase}`}>Soy el Bot de Asistencia de Chuck Norris. ¿Listo para sumergirte en el mundo de la leyenda viva? Estoy aquí para ayudarte con datos legendarios y respuestas de poder. ¡Dispara tus preguntas!</p>
-									</div>
-								</div>
-							</div>
+					<div className={`${styles_chat.chat_container}`} ref={scrollRef}>
+						<div className={`${styles_chat.chat_inner_container}`}>
+							<WelcomeMessage picture={pfpic_chuck}/>
 							{messages.map((message: any, i: any) => (
-								<div key={i} className={`${s_chat.inner_container}`}>
-									{
-										message.type === "joke" && (
-											<div className={`${s_chat.generated_inner_container}`}>
-												<p className={`${s_chat.gen_text_inner_container}`}>
-													Generated using Ask a Joke!
-												</p>
-											</div>
-										)
-									}
-									<div className={`${message.sender === "user" ? s_chat.message : s_chat.inner_container_answer}`}>
-										{
-											message.sender == 'user' ? (
-												<Image src={pfpic_user} width={40} height={40} alt="User profile picture" className={`${s_chat.user_pp_image}`} />
-											) : (
-												<Image src={pfpic_chuck} width={40} height={40} alt="Chuck Norris" className={`${s_chat.chuck_pp_image}`} />
-											)
-										}
-										<div className={`${s_chat.message_text_container}`}>
-											<p className={`${s_chat.name}`}>{message.name} at {message.time}</p>
-											<p className={`${s_chat.frase}`}>{message.text}</p>
-										</div>
-									</div>
-									{
-										message.type === "joke" && (
-											<ShareButton text={message.text}/>
-										)
-            
-									}
-								</div>
+								<Message key={i} msg={message}/>
 							))}
 						</div>
 					</div>
-					<form onSubmit={handleSubmit} className={`${s_chat.form}`}>
-						<div>
-							<div className={`${s_chat.button_container}`}>
-								<button type='button' className={`${s_chat.joke_button}`} onClick={handleButton}>Ask a Joke!</button>
+					<form onSubmit={handleSubmit} className={`${styles_chat.form}`}>
+						<div  className={`${styles_chat.form_inner}`}>
+							<div className={`${styles_chat.button_container}`}>
+								<button type='button' className={`${styles_chat.joke_button}`} onClick={handleButton}>
+									Ask a Joke!
+								</button>
 							</div>
-							<input className={`${s_chat.input_message}`} type="text" value={text} onChange={(e => setText(e.target.value))} placeholder='Chuck, I need help with a T-shirt purchase...' />
-							<button type='submit' className={`${text != '' ? s_chat.submit_button_active : s_chat.submit_button}`}>Ask</button>
+							<input className={`${styles_chat.input_message}`} type="text" value={text} onChange={(e => setText(e.target.value))} placeholder='Chuck, I need help with a T-shirt purchase...' />
+							<button type='submit' className={`${text != '' ? styles_chat.submit_button_active : styles_chat.submit_button}`}>
+								Ask
+							</button>
 						</div>
-						<p className={`${s_chat.powered}`}>Powered by <span>ChuckfAI</span></p>
+						<p className={`${styles_chat.powered}`}>
+							Powered by 
+							<span>
+								ChuckfAI
+							</span>
+						</p>
 					</form>
 				</div>
-			</main>
+			</div>
 		</>
 	)
 }
